@@ -1,4 +1,4 @@
-namespace java ezbake.frack
+namespace java ezbake.frack.core.data.thrift
 
 struct StreamEvent {
 	1: required string dateTime; // The date time for the stream event captured in ISO 8601 YYYY-MM-DDThh:mm:ssTZD (see: http://www.w3.org/TR/NOTE-datetime)
