@@ -24,7 +24,7 @@ public class PipelineTest
     	return strDate;
 	}
 
-	public static class MyParserPump extends Pump<StreamEvent>
+	public static class MyParserPump extends AbstractPump<StreamEvent>
 	{
 		public MyParserPump()
 		{
