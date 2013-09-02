@@ -5,7 +5,12 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 
+import ezbake.frack.core.util.ThriftUtil;
+
+import java.io.IOException;
 import java.util.List;
+
+import org.apache.thrift.TBase;
 
 public class OutputCollector
 {
@@ -18,24 +23,19 @@ public class OutputCollector
 		this.dataToBroadcast = ArrayListMultimap.create();
 	}
 	
-	public void emitBetweenPipes(byte [] data)
+	public void sendBetweenPipes(TBase thriftObject) throws IOException
 	{
-		Preconditions.checkNotNull(data);
-		if(data.length < 1)
-		{
-			return;
-		}
-		
-		dataBetweenPipes.add(data);
+		Preconditions.checkNotNull(thriftObject);
+		dataBetweenPipes.add(ThriftUtil.serialize(thriftObject));
 	}	
 	
-	public void broadcast(String topic, byte [] data)
+	public void broadcast(String topic, TBase thriftObject) throws IOException
 	{
 		Preconditions.checkNotNull(topic);
 		Preconditions.checkArgument(!topic.isEmpty());
-		Preconditions.checkNotNull(data);
+		Preconditions.checkNotNull(thriftObject);
 		
-		dataToBroadcast.put(topic, data);
+		dataToBroadcast.put(topic, ThriftUtil.serialize(thriftObject));
 	}
 	
 	public List<byte []>  getDataBetweenPipes()
