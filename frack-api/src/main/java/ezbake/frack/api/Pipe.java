@@ -3,7 +3,7 @@ package ezbake.frack.api;
 
 public class Pipe
 {
-	private OutputCollector outputCollector;
+	protected OutputCollector outputCollector;
 	
 	public Pipe()
 	{
