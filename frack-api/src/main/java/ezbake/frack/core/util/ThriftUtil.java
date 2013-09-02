@@ -1,4 +1,4 @@
-package ezbake.core.util;
+package ezbake.frack.core.util;
 
 import java.io.IOException;
 

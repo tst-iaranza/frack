@@ -26,9 +26,9 @@
 		<version>14.0.1</version>
 	</dependency>
 	<dependency>
-		<groupId>com.googlecode.gentyref</groupId>
-		<artifactId>gentyref</artifactId>
-		<version>1.1.0</version>
+		<groupId>com.twitter.elephantbird</groupId>
+		<artifactId>elephant-bird-core</artifactId>
+		<version>4.1</version>
 	</dependency>
 	<dependency>
 		<groupId>org.slf4j</groupId>
