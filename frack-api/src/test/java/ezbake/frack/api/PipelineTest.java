@@ -56,8 +56,9 @@ public class PipelineTest
 	public void basicPipelineTest() throws Exception
 	{
 		Pipeline pl = new Pipeline();
-		pl.addNozzle(new MyNozzle());
-		pl.addPump(new MyParserPump());
+		pl.addNozzle("myNozzle", new MyNozzle());
+		pl.addPump("myPump", new MyParserPump());
+		pl.addConnection("myNozzle", "myPump");
 		Deque<byte []> workQueue = Queues.newArrayDeque();
 		for(Pipe pipe : pl.getPipes())
 		{
