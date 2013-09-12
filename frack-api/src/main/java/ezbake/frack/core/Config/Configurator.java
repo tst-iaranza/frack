@@ -132,15 +132,16 @@ public class Configurator implements Iterable<Map.Entry<String,String>> {
 		
 		// File.Path resource
 		if (conf instanceof Path) {
-		  File file = new File(((Path)conf).toUri().getPath()).getAbsoluteFile();
-		  if (file.exists()) {
-			  if (!beQuiet) {
-				  LOG.debug("Parsing file: " + file);
-			  }
-			  this.addConfigSettings(resource.getName(), loadYAML(file));
-		  	}
-		 }
-		return true;
+			File file = new File(((Path)conf).toUri().getPath()).getAbsoluteFile();
+			if (file.exists()) {
+				if (!beQuiet) {
+				LOG.debug("Parsing file: " + file);
+				}
+				this.addConfigSettings(resource.getName(), loadYAML(file));
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private ConfigSettings loadYAML(File file) {
