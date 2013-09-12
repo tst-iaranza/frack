@@ -1,0 +1,5 @@
+#
+ezbake.frack.api.piperundebugmode: 1
+ezbake.frack.api.pipetotalworkers: 1
+ezbake.frack.api.pipesleeptime: 0
+ezbake.frack.api.piperuninterval: 0
