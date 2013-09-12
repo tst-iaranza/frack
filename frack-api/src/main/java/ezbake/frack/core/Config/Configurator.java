@@ -50,7 +50,7 @@ public class Configurator implements Iterable<Map.Entry<String,String>> {
 	/* ******************************Start Resources Region****************************** */
 	
 	/**
-    * The resource object contains the name and location information for a given configuration resource.
+	* The resource object contains the name and location information for a given configuration resource.
 	*/
 	private static class Resource { 
 		private final Object resource;
@@ -124,8 +124,8 @@ public class Configurator implements Iterable<Map.Entry<String,String>> {
 	}
 	
 	/**
-    * Load configuration that is contained in the Resource object.
-    * @return done <code>boolean</code> Indicates whether the resource was successfully loaded.
+	* Load configuration that is contained in the Resource object.
+	* @return done <code>boolean</code> Indicates whether the resource was successfully loaded.
 	*/
 	private boolean loadConfiguration(Resource resource) {
 		Object conf = resource.getResource();
