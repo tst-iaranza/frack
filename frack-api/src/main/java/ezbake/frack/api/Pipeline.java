@@ -83,6 +83,12 @@ public class Pipeline
 		public void setConfiguration(Configurator configuration)
 		{
 			pipeConfig = configuration.getConfigSettings(this.getPipeId());
+			
+			if (pipeConfig == null) {
+				ConfigSettings temp = configuration.getConfigSettings("default");
+				configuration.addConfigSettings(this.getPipeId(), temp);
+				pipeConfig = configuration.getConfigSettings(this.getPipeId());
+			}
 		}
 		
 		/**
@@ -104,7 +110,7 @@ public class Pipeline
 			return pipeConfig;
 		}
 		
-		/* public boolean isNozzle()
+		public boolean isNozzle()
 		{
 			return this.pipe instanceof Nozzle;
 		}
@@ -112,7 +118,7 @@ public class Pipeline
 		public boolean isPump()
 		{
 			return this.pipe instanceof Pump;
-		} */
+		}
 	}
 
 	public Pipeline()
