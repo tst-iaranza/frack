@@ -1,6 +1,6 @@
 package ezbake.frack.api;
 
-import com.twitter.elephantbird.util.TypeRef;
+import frack.core.util.TypeRef;
 	
 import java.io.IOException;
 
