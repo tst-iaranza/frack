@@ -172,8 +172,18 @@ public class Pipeline
 
 	public void addBroadcastTopic(final String topic)
 	{
-		this.broadcastTopics.add(topic);		
+		broadcastTopics.add(topic);		
 	}	
+
+	public List<String> getBroadcastTopics()
+	{
+		return broadcastTopics;
+	}
+
+	public Multimap<String, String> getTopicsToPipes()
+	{
+		return topicsToPipes;
+	}
 
 	/**
     * Adds a Pipe to the pipeline.

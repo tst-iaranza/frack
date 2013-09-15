@@ -1,21 +1,20 @@
 package ezbake.frack.core.config;
 
+import com.google.common.collect.Maps;
+import com.google.common.io.Closeables;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.yaml.snakeyaml.Yaml;
 
-import com.google.common.collect.Maps;
 
 public class Configurator implements Iterable<Map.Entry<String,String>> {
 	
@@ -84,9 +83,9 @@ public class Configurator implements Iterable<Map.Entry<String,String>> {
 	* @param filePath <code>String</code> of resource to be added. The local filesystem is examined directly to find the resource, without referring to the classpath.
 	*/
 	public void addPipeLineResource(String filePath) {
-		Path path = Paths.get(filePath);
+		File f = new File(filePath);
 		// add a check here....
-		addResourceObject(new Resource("default", path));
+		addResourceObject(new Resource("default", f));
 	}
 	
 	/**
@@ -94,7 +93,7 @@ public class Configurator implements Iterable<Map.Entry<String,String>> {
 	* @param id <code>String</code> of the configuration. This MUST match the configuration name for Pipes.
 	* @param filePath <code>File.Path</code> of resource to be added. The local filesystem is examined directly to find the resource, without referring to the classpath.
 	*/
-	public void addResource(String id, Path filePath) {
+	public void addResource(String id, File filePath) {
 		addResourceObject(new Resource(id, filePath));
 	}
 	
@@ -104,9 +103,9 @@ public class Configurator implements Iterable<Map.Entry<String,String>> {
 	* @param filePath <code>String</code> of resource to be added. The local filesystem is examined directly to find the resource, without referring to the classpath.
 	*/
 	public void addResource(String id, String filePath) {
-		Path path = Paths.get(filePath);
+		File f = new File(filePath);
 		// add a check here....
-		addResourceObject(new Resource(id, path));
+		addResourceObject(new Resource(id, f));
 	}
 	
 	private void addResourceObject(Resource config) {
@@ -131,8 +130,8 @@ public class Configurator implements Iterable<Map.Entry<String,String>> {
 		Object conf = resource.getResource();
 		
 		// File.Path resource
-		if (conf instanceof Path) {
-			File file = new File(((Path)conf).toUri().getPath()).getAbsoluteFile();
+		if (conf instanceof File) {
+			File file = (File)conf;
 			if (file.exists()) {
 				if (!beQuiet) {
 				LOG.debug("Parsing file: " + file);
@@ -156,7 +155,7 @@ public class Configurator implements Iterable<Map.Entry<String,String>> {
 		} catch (Exception e) {
 			LOG.debug("Error parsing file: " + e.getStackTrace().toString());
 		} finally {
-			IOUtils.closeQuietly(in);
+			Closeables.closeQuietly(in);
 		}
 		return settings;
 	}
