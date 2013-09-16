@@ -1,6 +1,6 @@
 package ezbake.frack.api;
 
-import frack.core.util.TypeRef;
+import ezbake.frack.core.util.TypeRef;
 	
 import java.io.IOException;
 

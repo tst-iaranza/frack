@@ -1,4 +1,4 @@
-package frack.core.util;
+package ezbake.frack.core.util;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
